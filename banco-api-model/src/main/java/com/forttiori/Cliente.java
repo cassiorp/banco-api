@@ -1,12 +1,16 @@
 package com.forttiori;
 
+
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.Id;
 
 @SuperBuilder
 @Getter
+@NoArgsConstructor
 abstract public class Cliente {
 
     @Id
