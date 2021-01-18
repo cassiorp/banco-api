@@ -1,0 +1,4 @@
+dependencies {
+    implementation project (':banco-api-repository')
+    implementation project (':banco-api-model')
+}
