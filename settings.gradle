@@ -1,0 +1,6 @@
+
+include 'banco-api-configuration'
+include 'banco-api-controller'
+include 'banco-api-repository'
+include 'banco-api-service'
+include 'banco-api-model'
