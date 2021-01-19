@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/clientes")
+@RequestMapping("api/clientePF")
 @RequiredArgsConstructor
 public class ClientePFController {
 
-    private final ServiceFacede serviceFacede;
+    private final ServiceFacade serviceFacade;
 
     @PostMapping
     public Cliente save(@RequestBody ClienteDTO clienteDTO) {
-        return this.serviceFacede.clientePFService.save(clienteDTO);
+        return this.serviceFacade.saveClientePF(clienteDTO);
     }
 
     @GetMapping
     public List<ClientePF> findAll() {
-        return this.serviceFacede.clientePFService.findAll();
+        return this.serviceFacade.findAllClientePF();
     }
 }

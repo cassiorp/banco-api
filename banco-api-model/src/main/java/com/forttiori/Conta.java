@@ -27,17 +27,17 @@ public class Conta {
         private String agencia;
         private Double saldo;
 
-        public ContaBuilder numero() {
+        public ContaBuilder numero(String numero) {
             this.numero = numero;
             return this;
         }
 
-        public ContaBuilder agencia() {
+        public ContaBuilder agencia(String agencia) {
             this.agencia = agencia;
             return this;
         }
 
-        public ContaBuilder saldo() {
+        public ContaBuilder saldo(Double saldo) {
             this.saldo = saldo;
             return this;
         }

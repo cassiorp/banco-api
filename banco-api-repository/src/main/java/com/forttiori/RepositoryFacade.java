@@ -1,9 +1,11 @@
 package com.forttiori;
 
-import com.forttiori.DTO.ClienteDTO;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
+@Repository
 public interface RepositoryFacade {
 
     public ClientePF saveClientePF(ClientePF clientePF);
@@ -15,6 +17,9 @@ public interface RepositoryFacade {
     public List<ClientePJ> findAllClientePJ();
     public ClientePJ findClientePJByID(String id);
     public void deleteClientePJByID(String id);
+
+    public Object getAnyCliente(String id);
+    public Cliente saveAnyCliente(Cliente cliente);
 
     public Conta saveConta(Conta conta);
     public List<Conta> findAllConta();

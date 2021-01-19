@@ -1,7 +1,9 @@
-package com.forttiori;
+package com.forttiori.Clientes;
 
+import com.forttiori.ClientePJ;
 import com.forttiori.DTO.ClienteDTO;
 import com.forttiori.DTO.UpDateSenhaDTO;
+import com.forttiori.RepositoryFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,11 +11,11 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ClientePJService {
+public class ClientePJServiceImpl implements ClientePJService{
 
     private final RepositoryFacade repositoryFacade;
 
-    public ClientePJ save(ClienteDTO clienteDTO) {
+    public ClientePJ saveClientePJ(ClienteDTO clienteDTO) {
         ClientePJ clientePJ = ClientePJ.builder()
                 .nome(clienteDTO.getNome())
                 .email(clienteDTO.getEmail())
@@ -23,21 +25,21 @@ public class ClientePJService {
         return this.repositoryFacade.saveClientePJ(clientePJ);
     }
 
-    public List<ClientePJ> findAll() {
+    public List<ClientePJ> findAllClientePJ() {
         return this.repositoryFacade.findAllClientePJ();
     }
 
-    public ClientePJ findByID(String id) {
+    public ClientePJ findClientePJByID(String id) {
         return this.repositoryFacade.findClientePJByID(id);
     }
 
-    public ClientePJ upDateSenha(String id, UpDateSenhaDTO upDateSenhaDTO) {
-        ClientePJ clientePJ = this.findByID(id);
+    public ClientePJ upDateSenhaPJ(String id, UpDateSenhaDTO upDateSenhaDTO) {
+        ClientePJ clientePJ = this.findClientePJByID(id);
         clientePJ.setSenha(upDateSenhaDTO.getSenha());
-        return clientePJ;
+        return this.repositoryFacade.saveClientePJ(clientePJ);
     }
 
-    public void delete(String id) {
+    public void deleteClientePJByID(String id) {
         this.repositoryFacade.deleteClientePJByID(id);
     }
 }
