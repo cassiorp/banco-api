@@ -6,14 +6,16 @@ import com.forttiori.Contas.ContaService;
 import com.forttiori.DTO.ClienteDTO;
 import com.forttiori.DTO.ContaDTO;
 import com.forttiori.DTO.UpDateSenhaDTO;
+import com.forttiori.DTO.ValorDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface ServiceFacade {
 
-    public Cliente saveClientePF(ClienteDTO clienteDTO);
+    public ClientePF saveClientePF(ClienteDTO clienteDTO);
     public List<ClientePF> findAllClientePF();
     public ClientePF findClientePFByID(String id);
     public ClientePF upDateSenhaPF(String id, UpDateSenhaDTO upDateSenhaDTO);
@@ -27,6 +29,8 @@ public interface ServiceFacade {
 
     public Conta saveConta(String idCliente, ContaDTO contaDTO);
     public List<Conta> findAllConta();
+    public Double deposito(String idCliente, ValorDTO valorDTO);
+    public Double saque(String idCliente, ValorDTO valorDTO);
 
 
 }

@@ -1,13 +1,17 @@
 package com.forttiori.Clientes;
 
+import com.forttiori.Cliente;
+import com.forttiori.ClientePF;
 import com.forttiori.ClientePJ;
 import com.forttiori.DTO.ClienteDTO;
 import com.forttiori.DTO.UpDateSenhaDTO;
+import com.forttiori.Exceptions.ClienteNotFoundException;
 import com.forttiori.RepositoryFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,13 +20,13 @@ public class ClientePJServiceImpl implements ClientePJService{
     private final RepositoryFacade repositoryFacade;
 
     public ClientePJ saveClientePJ(ClienteDTO clienteDTO) {
-        ClientePJ clientePJ = ClientePJ.builder()
+        ClientePJ clientePF = ClientePJ.builder()
                 .nome(clienteDTO.getNome())
                 .email(clienteDTO.getEmail())
                 .senha(clienteDTO.getSenha())
                 .cnpj(clienteDTO.getCpfOuCnpj())
                 .build();
-        return this.repositoryFacade.saveClientePJ(clientePJ);
+        return this.repositoryFacade.saveClientePJ(clientePF);
     }
 
     public List<ClientePJ> findAllClientePJ() {
@@ -30,7 +34,8 @@ public class ClientePJServiceImpl implements ClientePJService{
     }
 
     public ClientePJ findClientePJByID(String id) {
-        return this.repositoryFacade.findClientePJByID(id);
+        Optional<ClientePJ> clientePJ = (this.repositoryFacade.findClientePJByID(id));
+        return clientePJ.orElseThrow(() -> new ClienteNotFoundException("Cliente não encontrado"));
     }
 
     public ClientePJ upDateSenhaPJ(String id, UpDateSenhaDTO upDateSenhaDTO) {

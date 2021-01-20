@@ -7,6 +7,7 @@ import com.forttiori.Contas.ContaService;
 import com.forttiori.DTO.ClienteDTO;
 import com.forttiori.DTO.ContaDTO;
 import com.forttiori.DTO.UpDateSenhaDTO;
+import com.forttiori.DTO.ValorDTO;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -24,7 +26,7 @@ public class ServiceFacadeImpl implements ServiceFacade{
     private final ContaService contaService;
 
     @Override
-    public Cliente saveClientePF(ClienteDTO clienteDTO) {
+    public ClientePF saveClientePF(ClienteDTO clienteDTO) {
         return clientePFService.saveClientePF(clienteDTO);
     }
     @Override
@@ -59,24 +61,32 @@ public class ServiceFacadeImpl implements ServiceFacade{
     public ClientePJ findClientePJByID(String id) {
         return this.clientePJService.findClientePJByID(id);
     }
-
     @Override
     public ClientePJ upDateSenhaPJ(String id, UpDateSenhaDTO upDateSenhaDTO) {
         return this.clientePJService.upDateSenhaPJ(id, upDateSenhaDTO);
     }
-
     @Override
     public void deleteClientePJByID(String id) {
         this.clientePJService.deleteClientePJByID(id);
     }
 
+
     @Override
     public Conta saveConta(String idCliente, ContaDTO contaDTO) {
         return this.contaService.saveConta(idCliente, contaDTO);
     }
-
     @Override
     public List<Conta> findAllConta() {
         return this.contaService.findAllConta();
+    }
+
+    @Override
+    public Double deposito(String idCliente, ValorDTO valorDTO) {
+        return this.contaService.deposito(idCliente, valorDTO);
+    }
+
+    @Override
+    public Double saque(String idCliente, ValorDTO valorDTO) {
+        return this.contaService.saque(idCliente, valorDTO);
     }
 }

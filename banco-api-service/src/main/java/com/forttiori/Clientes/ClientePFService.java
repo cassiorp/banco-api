@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public interface ClientePFService {
 
-    public Cliente saveClientePF(ClienteDTO clienteDTO);
+    public ClientePF saveClientePF(ClienteDTO clienteDTO);
 
     public List<ClientePF> findAllClientePF();
 

@@ -5,11 +5,13 @@ import com.forttiori.Cliente;
 import com.forttiori.ClientePF;
 import com.forttiori.DTO.ClienteDTO;
 import com.forttiori.DTO.UpDateSenhaDTO;
+import com.forttiori.Exceptions.ClienteNotFoundException;
 import com.forttiori.RepositoryFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,7 +19,7 @@ public class ClientePFServiceImpl implements ClientePFService{
 
     private final RepositoryFacade repositoryFacade;
 
-    public Cliente saveClientePF(ClienteDTO clienteDTO) {
+    public ClientePF saveClientePF(ClienteDTO clienteDTO) {
         ClientePF clientePF = ClientePF.builder()
                 .nome(clienteDTO.getNome())
                 .email(clienteDTO.getEmail())
@@ -32,7 +34,8 @@ public class ClientePFServiceImpl implements ClientePFService{
     }
 
     public ClientePF findClientePFByID(String id) {
-        return this.repositoryFacade.findClientePFByID(id);
+        Optional<ClientePF> clientePF = (this.repositoryFacade.findClientePFByID(id));
+        return clientePF.orElseThrow(() -> new ClienteNotFoundException("Cliente não encontrado"));
     }
 
     public ClientePF upDateSenhaPF(String id, UpDateSenhaDTO upDateSenhaDTO) {

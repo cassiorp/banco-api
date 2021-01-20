@@ -1,6 +1,7 @@
 package com.forttiori.Exceptions;
 
-public class ValorInvalidoException extends Throwable {
-    public ValorInvalidoException(String s) {
+public class ValorInvalidoException extends RuntimeException {
+    public ValorInvalidoException(String message) {
+        super(message);
     }
 }
