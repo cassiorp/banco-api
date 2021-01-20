@@ -28,7 +28,10 @@ public class RepositoryFacadeImpl implements RepositoryFacade{
     }
     @Override
     public Optional<ClientePF> findClientePFByID(String id) {
-       return this.clientePFRepository.findById(id);
+        Optional<ClientePF> clientePF = this.clientePFRepository.findById(id);
+        return clientePF.isPresent() ? Optional.of(clientePF.get()) : Optional.empty();
+        //return Optional.ofNullable(clientePF.get());
+        //return this.clientePFRepository.findById(id);
     }
     @Override
     public void deleteClientePFByID(String id) {
@@ -54,11 +57,28 @@ public class RepositoryFacadeImpl implements RepositoryFacade{
     }
 
 
+//    @Override
+//    public Cliente getAnyCliente(String id) {
+//        Cliente cliente = this.findClientePFByID(id).get();
+//        if(cliente == null) {
+//            return this.findClientePJByID(id).get();
+//        }
+//        return cliente;
+//    }
+
     @Override
     public Optional<Cliente> getAnyCliente(String id) {
-
-      return (Cliente) new ClientePF();
+        Optional<ClientePF> clientePF = this.findClientePFByID(id);
+        Optional<ClientePJ> clientePJ = this.findClientePJByID(id);
+        if(clientePF.isPresent()) {
+            return Optional.ofNullable(clientePF.get());
+        }
+        if(clientePJ.isPresent()){
+            return Optional.ofNullable(clientePJ.get());
+        }
+        return Optional.empty();
     }
+
 
     @Override
     public Cliente saveAnyCliente(Cliente cliente) {
@@ -76,11 +96,9 @@ public class RepositoryFacadeImpl implements RepositoryFacade{
         return this.contaRepository.findAll();
     }
     @Override
-    public Conta findContaByID(String id) {
-        Optional<Conta> conta = this.contaRepository.findById(id);
-        return conta.get();
+    public Optional<Conta> findContaByID(String id) {
+        return this.contaRepository.findById(id);
     }
-
     @Override
     public void deleteContaByID(String id) {
         this.contaRepository.deleteById(id);

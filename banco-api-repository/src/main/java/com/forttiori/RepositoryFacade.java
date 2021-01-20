@@ -10,20 +10,20 @@ public interface RepositoryFacade {
 
     public ClientePF saveClientePF(ClientePF clientePF);
     public List<ClientePF> findAllClientePF();
-    public ClientePF findClientePFByID(String id);
+    public Optional<ClientePF> findClientePFByID(String id);
     public void deleteClientePFByID(String id);
 
     public ClientePJ saveClientePJ(ClientePJ clientePJ);
     public List<ClientePJ> findAllClientePJ();
-    public ClientePJ findClientePJByID(String id);
+    public Optional<ClientePJ> findClientePJByID(String id);
     public void deleteClientePJByID(String id);
 
-    public Object getAnyCliente(String id);
+    public Optional<Cliente> getAnyCliente(String id);
     public Cliente saveAnyCliente(Cliente cliente);
 
     public Conta saveConta(Conta conta);
     public List<Conta> findAllConta();
-    public Conta findContaByID(String id);
+    public Optional<Conta> findContaByID(String id);
     public void deleteContaByID(String id);
 
 
