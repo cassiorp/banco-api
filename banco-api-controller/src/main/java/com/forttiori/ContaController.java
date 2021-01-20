@@ -3,6 +3,7 @@ package com.forttiori;
 
 import com.forttiori.Contas.ContaServiceImpl;
 import com.forttiori.DTO.ContaDTO;
+import com.forttiori.DTO.ValorDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class ContaController {
     private final ServiceFacade serviceFacade;
 
     @PostMapping("/{idCliente}")
-    public Conta save(@PathVariable String idCliente, @RequestBody ContaDTO contaDTO) {
+    public Conta saveContaPF(@PathVariable String idCliente, @RequestBody ContaDTO contaDTO) {
         return this.serviceFacade.saveConta(idCliente, contaDTO);
     }
 
@@ -24,4 +25,15 @@ public class ContaController {
     public List<Conta> findAll() {
         return this.serviceFacade.findAllConta();
     }
+
+    @PatchMapping("/deposito/{idCliente}")
+    public Double deposito(@PathVariable String idCliente, @RequestBody ValorDTO valorDTO) {
+        return this.serviceFacade.deposito(idCliente, valorDTO);
+    }
+
+    @PatchMapping("/saque/{idCliente}")
+    public Double saque(@PathVariable String idCliente, @RequestBody ValorDTO valorDTO) {
+        return this.serviceFacade.saque(idCliente, valorDTO);
+    }
+
 }
