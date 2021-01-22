@@ -2,8 +2,6 @@ package com.forttiori.Contas;
 
 
 import com.forttiori.Cliente;
-import com.forttiori.ClientePF;
-import com.forttiori.Clientes.ClientePFService;
 import com.forttiori.Conta;
 import com.forttiori.DTO.ContaDTO;
 import com.forttiori.DTO.ValorDTO;
@@ -23,8 +21,6 @@ import java.util.Optional;
 public class ContaServiceImpl implements ContaService{
 
     private final RepositoryFacade repositoryFacade;
-    //APLICAR MEDIATOR AQUI
-    //private final ClientePFService clientePFService;
 
 
     public Conta saveConta(String idCliente, ContaDTO contaDTO) {
@@ -54,7 +50,8 @@ public class ContaServiceImpl implements ContaService{
 
         Optional<Cliente> cliente = this.buscaCliente(idCliente);
 
-        if(seTemConta(cliente.get())) throw new ClienteSemContaException("Cliente nao possui conta!");
+        if(Boolean.TRUE.equals(seTemConta(cliente.get()))) throw new ClienteSemContaException("Cliente nao possui conta!");
+
         if(valorDTO.getValor() <= 0)throw new ValorInvalidoException("Valor invalido!");
 
         Conta conta = cliente.get().getConta();
@@ -79,10 +76,14 @@ public class ContaServiceImpl implements ContaService{
 
         Optional<Cliente> cliente = this.buscaCliente(idCliente);
 
-        if(seTemConta(cliente.get())) throw new ClienteSemContaException("Cliente nao possui conta!");
+
+        if(Boolean.TRUE.equals(seTemConta(cliente.get())))
+            throw new ClienteSemContaException("Cliente nao possui conta!");
 
         Conta conta = cliente.get().getConta();
-        if(valorDTO.getValor() > conta.getSaldo()) throw new SaldoInsuficienteException("Saldo insuficiente");
+
+        if(valorDTO.getValor() > conta.getSaldo())
+            throw new SaldoInsuficienteException("Saldo insuficiente");
 
         conta.setSaldo(conta.getSaldo() - valorDTO.getValor());
         cliente.get().setConta(conta);
@@ -94,7 +95,7 @@ public class ContaServiceImpl implements ContaService{
 
 
     private Boolean seTemConta(Cliente cliente) {
-        return cliente.getConta() == null ? true : false;
+        return cliente.getConta() == null;
     }
 
 }

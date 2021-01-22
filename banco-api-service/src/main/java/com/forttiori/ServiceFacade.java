@@ -1,8 +1,5 @@
 package com.forttiori;
 
-import com.forttiori.Clientes.ClientePFService;
-import com.forttiori.Clientes.ClientePJService;
-import com.forttiori.Contas.ContaService;
 import com.forttiori.DTO.ClienteDTO;
 import com.forttiori.DTO.ContaDTO;
 import com.forttiori.DTO.UpDateSenhaDTO;
@@ -10,7 +7,6 @@ import com.forttiori.DTO.ValorDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public interface ServiceFacade {

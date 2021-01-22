@@ -1,7 +1,5 @@
 package com.forttiori.Clientes;
 
-import com.forttiori.Cliente;
-import com.forttiori.ClientePF;
 import com.forttiori.ClientePJ;
 import com.forttiori.DTO.ClienteDTO;
 import com.forttiori.DTO.UpDateSenhaDTO;

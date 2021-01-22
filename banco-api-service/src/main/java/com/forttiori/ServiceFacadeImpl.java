@@ -8,14 +8,11 @@ import com.forttiori.DTO.ClienteDTO;
 import com.forttiori.DTO.ContaDTO;
 import com.forttiori.DTO.UpDateSenhaDTO;
 import com.forttiori.DTO.ValorDTO;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 
 @Service

@@ -23,6 +23,7 @@ public class Conta {
     }
 
     public static class ContaBuilder {
+
         private String numero;
         private String agencia;
         private Double saldo;

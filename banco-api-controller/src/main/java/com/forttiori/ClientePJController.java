@@ -1,7 +1,5 @@
 package com.forttiori;
 
-
-import com.forttiori.Clientes.ClientePJServiceImpl;
 import com.forttiori.DTO.ClienteDTO;
 import com.forttiori.DTO.UpDateSenhaDTO;
 import lombok.RequiredArgsConstructor;

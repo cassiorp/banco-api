@@ -1,7 +1,6 @@
 package com.forttiori;
 
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +10,7 @@ import org.springframework.data.annotation.Id;
 @SuperBuilder
 @Getter
 @NoArgsConstructor
-abstract public class Cliente {
+public abstract class Cliente {
 
     @Id
     private String id;

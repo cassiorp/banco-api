@@ -3,7 +3,7 @@ package com.forttiori.DTO;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -18,4 +18,5 @@ public class ContaDTO {
     @NotNull
     @NotEmpty
     private String agencia;
+
 }

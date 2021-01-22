@@ -1,6 +1,5 @@
 package com.forttiori.Contas;
 
-import com.forttiori.Cliente;
 import com.forttiori.Conta;
 import com.forttiori.DTO.ContaDTO;
 import com.forttiori.DTO.ValorDTO;
