@@ -2,6 +2,7 @@ package com.forttiori.Contas;
 
 
 import com.forttiori.Cliente;
+import com.forttiori.Clientes.ClienteService;
 import com.forttiori.Conta;
 import com.forttiori.DTO.ContaDTO;
 import com.forttiori.DTO.ValorDTO;
@@ -21,7 +22,7 @@ import java.util.Optional;
 public class ContaServiceImpl implements ContaService{
 
     private final RepositoryFacade repositoryFacade;
-
+    private final ClienteService clienteService;
 
     public Conta saveConta(String idCliente, ContaDTO contaDTO) {
 
@@ -36,9 +37,8 @@ public class ContaServiceImpl implements ContaService{
         cliente.get().setConta(conta);
 
         this.repositoryFacade.saveConta(conta);
-        this.repositoryFacade.saveAnyCliente(cliente.get());
+        this.clienteService.saveAnyCliente(cliente.get());
         return conta;
-
     }
 
     public List<Conta> findAllConta(){
@@ -58,14 +58,14 @@ public class ContaServiceImpl implements ContaService{
         conta.setSaldo(conta.getSaldo() + valorDTO.getValor());
         cliente.get().setConta(conta);
         this.repositoryFacade.saveConta(conta);
-        this.repositoryFacade.saveAnyCliente(cliente.get());
+        this.clienteService.saveAnyCliente(cliente.get());
 
         return conta.getSaldo();
 
     }
 
     private Optional<Cliente> buscaCliente(String id){
-        Optional<Cliente> cliente = this.repositoryFacade.getAnyCliente(id);
+        Optional<Cliente> cliente = this.clienteService.getAnyCliente(id);
         if(!cliente.isPresent()) {
             throw new ClienteNotFoundException("Cliente não encontrado");
         }
@@ -88,7 +88,7 @@ public class ContaServiceImpl implements ContaService{
         conta.setSaldo(conta.getSaldo() - valorDTO.getValor());
         cliente.get().setConta(conta);
         this.repositoryFacade.saveConta(conta);
-        this.repositoryFacade.saveAnyCliente(cliente.get());
+        this.clienteService.saveAnyCliente(cliente.get());
 
         return conta.getSaldo();
     }
